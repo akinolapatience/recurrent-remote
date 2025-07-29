@@ -64,7 +64,7 @@ const ModalHolder: React.FC = () => {
         opened={timelineDrawerOpened}
         onClose={() => setTimelineDrawerOpened(false)}
         position="right"
-        size="lg"
+        size="md"
         title="Guest Timeline"
         padding="md"
       >

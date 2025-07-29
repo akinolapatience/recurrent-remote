@@ -44,112 +44,105 @@ const PropertyInspectionUI: React.FC = () => {
   };
 
   const renderInspectionSection = (item: InspectionItem) => (
-    <Stack key={item.id} gap="xs" mb="md">
-      {/* Title on top */}
-      <Title order={4} size="h5">
+    <Stack key={item.id} gap="xs" mb="sm">
+      <Title order={5} size="h6">
         {item.name}
       </Title>
 
-      {/* Icon + FileInput inside a styled container */}
+      {/* Icon + FileInput stack vertically on small screens */}
       <Box
-        p="sm"
+        p="xs"
         style={{
           display: "flex",
-          alignItems: "center",
-          gap: "12px",
+          flexDirection: "column",
+          gap: "10px",
           backgroundColor: "#f8f9fa",
-          borderRadius: rem(6),
+          borderRadius: rem(0),
         }}
       >
-        {/* Appliance Icon */}
-        <Box w={60} h={60} style={{ borderRadius: 8, overflow: "hidden" }}>
+        <Box w={50} h={50} style={{ borderRadius: 6, overflow: "hidden" }}>
           <Image
             src="/assets/Items-icon.png"
             alt="Item Icon"
-            width={60}
-            height={60}
+            width={50}
+            height={50}
             style={{ objectFit: "cover" }}
           />
         </Box>
 
-        {/* File Upload */}
         <FileInput
-          placeholder="Click to upload video Direct from camera"
+          placeholder="Upload item video"
           accept="video/*"
           value={item.videoFile ?? undefined}
           onChange={(file) => handleVideoUpload(item.id, file)}
-          style={{ flex: 1 }}
           styles={{
             input: {
               border: "none",
               backgroundColor: "transparent",
               paddingLeft: 0,
-              fontSize: "14px",
+              fontSize: "13px",
             },
           }}
         />
       </Box>
 
-      {/* Success Alert */}
       {item.uploaded && (
         <Alert
-          mt="sm"
+          mt="xs"
           icon={<CheckCircle size={16} />}
           color="green"
           radius="xs"
           variant="light"
         >
-          Video uploaded successfully
+          <Text size="sm">Video uploaded successfully</Text>
         </Alert>
       )}
     </Stack>
   );
 
   return (
-    <Box bg="gray.1" py="md" mih="100vh">
+    <Box bg="gray.1" py="sm" mih="100vh">
       <Container size="xs" px="xs">
         <Card radius={0} p="md">
-          <Stack gap="xl">
+          <Stack gap="lg">
             {/* Header */}
-            <Stack gap={4}>
-              <Title order={4}>Check-In Property Inspection</Title>
-              <Text size="sm" c="dimmed">
-                Confirm that the properties are in order before checking in
+            <Stack gap={2}>
+              <Title order={4} size="h5">
+              Check-Out Property Inspection
+              </Title>
+              <Text size="xs" c="dimmed">
+                Confirm that the properties are in order before checking out
               </Text>
             </Stack>
 
             {/* Instructions */}
-            <Alert color="orange" radius="xs" variant="light">
-              <Text c="#92400E" size="sm">
-                Make and upload a video to confirm that the listed items are in
-                order pre-check-in
+            <Alert color="orange" radius={0} variant="light">
+              <Text c="#92400E" size="xs">
+               Make and upload a video to confirm that the listed items are
+                still in order
               </Text>
             </Alert>
 
             {/* Inspection Items */}
-            <Stack gap="md">
+            <Stack gap="sm">
               {inspectionItems.map(renderInspectionSection)}
             </Stack>
 
-            {/* Action Buttons */}
+            {/* Buttons */}
             <Group justify="center" mt="sm" grow>
               <Button
                 variant="default"
-                size="md"
-                w="50%"
-                h={48}
+                size="sm"
                 radius={0}
-                style={{ fontSize: "16px", fontWeight: 500 }}
+                style={{ fontSize: "14px", fontWeight: 500, height: 42 }}
               >
                 Back
               </Button>
               <Button
                 color="blue"
-                size="md"
-                w="50%"
-                h={48}
+                size="sm"
                 radius={0}
-                style={{ fontSize: "16px", fontWeight: 500 }}
+                style={{ fontSize: "14px", fontWeight: 500, height: 42 }}
                 disabled={!allItemsUploaded}
               >
                 Done

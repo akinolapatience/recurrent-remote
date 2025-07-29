@@ -5,18 +5,14 @@ import {
   Timeline,
   Text,
   Button,
+  Flex,
   Paper,
   Group,
   Stack,
   ThemeIcon,
   Box,
 } from "@mantine/core";
-import {
-  IconCheck,
-  //   IconClock,
-  //   IconLogin,
-  //   IconLogout,
-} from "@tabler/icons-react";
+import { IconCheck } from "@tabler/icons-react";
 
 interface TimelineItemData {
   id: string;
@@ -68,19 +64,6 @@ const GuestTimeline: React.FC = () => {
     },
   ];
 
-  const getTimelineColor = (status: string) => {
-    switch (status) {
-      case "completed":
-        return "teal";
-      case "current":
-        return "blue";
-      case "pending":
-        return "gray";
-      default:
-        return "gray";
-    }
-  };
-
   const getStatusIcon = (status: string, defaultIcon: React.ReactNode) => {
     if (status === "completed") {
       return <IconCheck size={16} />;
@@ -89,58 +72,64 @@ const GuestTimeline: React.FC = () => {
   };
 
   return (
-    <Container size="md" py="xl">
-      <Paper radius={0} p="xl">
+    <Container px="xs" py="md" size="100%" style={{ maxWidth: "100%" }}>
+      <Paper radius={0} p="md" style={{ width: "100%" }}>
         <Stack gap="lg">
-          <Title order={2} size="h3" w={600} c="dark">
+          <Title order={3} size="h4" fw={600} c="dark">
             Guest Timeline
           </Title>
 
-          <Timeline active={1} bulletSize={24} lineWidth={1}>
-            {timelineData.map((item, index) => (
+          <Timeline active={1} bulletSize={20} lineWidth={1}>
+            {timelineData.map((item) => (
               <Timeline.Item
                 key={item.id}
                 bullet={
-                  <ThemeIcon
-                    size={24}
-                    variant="filled"
-                    color="#046F7B"
-                    radius="sm"
-                  >
+                  <ThemeIcon size={20} variant="filled" color="#D6DAE0
+                  " radius="sm">
                     {getStatusIcon(item.status, item.icon)}
                   </ThemeIcon>
                 }
                 title={
-                  <Group p="apart" align="flex-start" gap="sm">
-                    <Box>
-                      <Text w={400} size="sm" c="dark">
+                  <Flex
+                    justify="space-between"
+                    align="start"
+                    wrap="wrap"
+                    w="100%"
+                    gap="xs"
+                  >
+                    {/* Left side */}
+                    <Box style={{ flex: 1, minWidth: "60%" }}>
+                      <Text fw={500} size="sm" c="dark">
                         {item.title}
                       </Text>
                       <Text size="xs" c="dimmed" mt={2}>
                         {item.description}
                       </Text>
                     </Box>
-                    <Box ta="right">
-                      <Text size="xs" c="dimmed" w={500}>
+
+                    {/* Right side */}
+                    <Box style={{ textAlign: "right" }}>
+                      <Text size="xs" c="dimmed">
                         {item.time}
                       </Text>
                       <Text size="xs" c="dimmed">
                         {item.date}
                       </Text>
                     </Box>
-                  </Group>
+                  </Flex>
                 }
               />
             ))}
           </Timeline>
 
-          <Box mt="xl">
+          <Box mt="md">
             <Button
               fullWidth
               size="md"
               color="#046F7B"
               variant="filled"
               radius={0}
+              style={{ fontSize: "14px" }}
             >
               Check-In
             </Button>

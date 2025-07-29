@@ -1,9 +1,10 @@
 .main-header {
-  padding: 1rem 2rem;
+  /* padding: 1rem 0rem; */
   border-bottom: 1px solid #e9ecef;
   background-color: white;
-  display: flex;
-  align-items: center;
+  display: left;
+  align-items: left;
+  margin-bottom: 50px;
 }
 
 /* .logo {
